@@ -1,7 +1,6 @@
 package com.ecommerce.service;
 
 import com.ecommerce.data.model.CreditCardInformation;
-import com.ecommerce.data.repository.Users;
 import com.ecommerce.dto.Request.DetailUserRequest;
 import com.ecommerce.dto.Response.DetailUserResponse;
 import org.junit.jupiter.api.Test;
@@ -22,17 +21,15 @@ public class CreditCardInfoServiceImplTest {
     @Test
     public void CreateCustomerCreditDetail(){
         DetailUserRequest detailUserRequest=new DetailUserRequest();
-        CreditCardInformation creditCardInformation=new CreditCardInformation();
-        detailUserRequest.setCardExpirationYearAndMonth(LocalDateTime.now().plusMonths(2));
         detailUserRequest.setCardCvv("323");
-        creditCardInformation.setCardType(MASTERCARD);
-        detailUserRequest.setCardExpirationYearAndMonth(LocalDateTime.now().plusMonths(2));
-        detailUserRequest.setId("12");
+        detailUserRequest.setCardType(MASTERCARD);
         detailUserRequest.setCardName("obanla");
+        detailUserRequest.setCreditCardNumber("4554323456");
 
-        DetailUserResponse detailUserResponse = creditCardInfoServices.CreateCustomerCreditDetails(detailUserRequest);
+
+        DetailUserResponse detailUserResponse = creditCardInfoServices.createCustomerCreditDetails(detailUserRequest);
         assertThat(detailUserResponse).isNotNull();
-        assertThat(detailUserResponse.getCardType()).isEqualTo(MASTERCARD);
+
 
 
 

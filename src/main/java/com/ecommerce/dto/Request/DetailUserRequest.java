@@ -1,5 +1,6 @@
 package com.ecommerce.dto.Request;
 
+import com.ecommerce.data.Enums.CardType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +15,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 public class DetailUserRequest {
-    private String id;
-    private LocalDate localDate;
-    private String nameOnCard;
+
+    private String creditCardNumber;
     private String cardCvv;
-    private String cardType;
-    private LocalDateTime cardExpirationYearAndMonth;
+    private CardType cardType;
     private String cardName;
 }

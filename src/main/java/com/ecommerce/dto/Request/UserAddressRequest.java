@@ -14,5 +14,4 @@ public class UserAddressRequest {
     private String countryName;
     private String street;
     private String houseNumber;
-    private String id;
 }

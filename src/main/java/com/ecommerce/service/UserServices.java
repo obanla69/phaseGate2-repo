@@ -3,11 +3,10 @@ package com.ecommerce.service;
 import com.ecommerce.data.model.Item;
 import com.ecommerce.data.model.ShoppingCart;
 import com.ecommerce.data.model.User;
-import com.ecommerce.dto.Request.DeleteUserRequest;
-import com.ecommerce.dto.Request.LoginRequest;
-import com.ecommerce.dto.Request.UpdateShoppingCartRequest;
-import com.ecommerce.dto.Request.UserRequest;
+import com.ecommerce.dto.Request.*;
 import com.ecommerce.dto.Response.DeleteUserResponse;
+import com.ecommerce.dto.Response.GetShoppingCartResponse;
+import com.ecommerce.dto.Response.UpdateShoppingCartResponse;
 import com.ecommerce.dto.Response.UserResponse;
 
 import java.util.List;
@@ -22,7 +21,8 @@ public interface UserServices {
     List<Item> items();
     void deleteAllUsers();
     Optional<User> findUserById(String id);
-    ShoppingCart getShoppingCart();
+    GetShoppingCartResponse getShoppingCartToCart(GetShoppingCartRequest getShoppingCartResponse);
 
-    ShoppingCart updateShoppingCart(UpdateShoppingCartRequest updateShoppingCartRequest);
+
+    UpdateShoppingCartResponse updateShoppingCart(UpdateShoppingCartRequest updateShoppingCartRequest);
 }

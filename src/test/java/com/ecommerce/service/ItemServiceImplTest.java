@@ -7,6 +7,7 @@ import com.ecommerce.data.repository.ItemRepo;
 import com.ecommerce.data.repository.Users;
 import com.ecommerce.dto.Request.ItemRequest;
 import com.ecommerce.dto.Response.ItemResponse;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,27 +20,29 @@ public class ItemServiceImplTest {
     @Autowired
     private ItemService itemService;
     @Autowired
-    private Users users;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private  ItemRepo itemRepo;
+    private ItemRepo itemRepo;
 
+    @BeforeEach
+    public void setUp(){
+        itemRepo.deleteAll();
+
+    }
 
     @Test
     public void addItem(){
-        ItemRequest itemRequest = new ItemRequest();
+        ItemRequest itemRequest= new ItemRequest();
+        Item item = new Item();
         Product product = new Product();
-        product.setProductId("12");
+        product.setId("12");
         product.setProductName("cloth");
-        product.setProductDescription("nice cloth");
+        product.setPrice("4000");
+        product.setProductDescription("nice product");
         product.setProductCategory(CLOTHING);
-        itemRequest.setQuantityProduct("43kg");
-        itemRequest.setId("12");
+        itemRequest.setQuantityProduct("4");
         itemRequest.setProduct(product);
         ItemResponse itemResponse = itemService.addItem(itemRequest);
 
         assertThat(itemResponse).isNotNull();
-
+        assertThat(product).isNotNull();
     }
 }

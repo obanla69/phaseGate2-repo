@@ -22,6 +22,6 @@ public class ItemResponse {
     private String productName;
     private String price;
     private String productDescription;
-    private ProductCategory productCategory;
+
 
 }

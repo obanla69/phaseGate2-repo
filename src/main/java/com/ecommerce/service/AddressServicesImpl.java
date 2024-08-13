@@ -17,6 +17,7 @@ public class AddressServicesImpl implements AddressServices {
     private Users users;
     @Autowired
     private Addresses addresses;
+
     @Override
     public UserAddressResponse customerAdress(UserAddressRequest userAddressRequest) {
         Address address= new Address();
@@ -24,10 +25,13 @@ public class AddressServicesImpl implements AddressServices {
         address.setCountryName(userAddressRequest.getCountryName());
         address.setStreet(userAddressRequest.getStreet());
         address.setCityName(userAddressRequest.getCityName());
-        address.setId(userAddressRequest.getId());
+
         addresses.save(address);
        UserAddressResponse userAddressResponse = new UserAddressResponse();
-
+       userAddressResponse.setCityName(address.getCityName());
+        userAddressResponse.setCountryName(address.getCountryName());
+        userAddressResponse.setHouseNumber(address.getHouseNumber());
+        userAddressResponse.setStreet(address.getStreet());
         return userAddressResponse;
     }
 }

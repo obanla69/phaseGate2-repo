@@ -1,9 +1,7 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.dto.Request.DeleteUserRequest;
-import com.ecommerce.dto.Request.LoginRequest;
-import com.ecommerce.dto.Request.UserRequest;
-import com.ecommerce.dto.Response.UserResponse;
+import com.ecommerce.dto.Request.*;
+import com.ecommerce.service.ShoppingCartServicesImpl;
 import com.ecommerce.service.UserServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +15,8 @@ public class UserController {
 
     @Autowired
     private UserServicesImpl userServices;
+    @Autowired
+    private ShoppingCartServicesImpl shoppingCartServices;
 
 
     @PostMapping("/sign-up")
@@ -43,7 +43,27 @@ public class UserController {
         }catch (Exception exception){
             return new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
         }
+
     }
+
+    @PostMapping("/getShoppingCart")
+    public ResponseEntity<?>getShoppingCart(@RequestBody UserCartRequest getShoppingCartRequest){
+        try{
+            return new ResponseEntity<>(shoppingCartServices.itemAddedToCart(getShoppingCartRequest),CREATED);
+        }catch (Exception exception){
+            return new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
+        }
+    }
+    @PutMapping("/updatedToCart")
+    public  ResponseEntity<?>updatedToCart(@RequestBody UpdateShoppingCartRequest updateShoppingCartRequest){
+        try{
+            return new ResponseEntity<>(userServices.updateShoppingCart(updateShoppingCartRequest),CREATED);
+        }catch(Exception exception){
+            return  new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
+        }
+    }
+
+
 
 }
 

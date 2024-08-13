@@ -1,8 +1,11 @@
 package com.ecommerce.service;
 
+import com.ecommerce.data.model.Product;
 import com.ecommerce.dto.Request.AddProductRequest;
 import com.ecommerce.dto.Request.UpdateProductRequest;
 import com.ecommerce.dto.Response.AddProductResponse;
+import com.ecommerce.dto.Response.UpdateProductResponse;
+import com.ecommerce.dto.Response.UpdateShoppingCartResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,24 +21,30 @@ public class ProductServicesImplTest {
 
     @Test
     public void addProduct(){
+
         AddProductRequest addProductRequest = new AddProductRequest();
-        addProductRequest.setProductName("bread");
-        addProductRequest.setPrice("4500");
-        addProductRequest.setProductId("78");
         addProductRequest.setProductCategory(ELECTRONICS);
-        addProductRequest.setProductDescription("very good");
+        addProductRequest.setProductName("yam");
+        addProductRequest.setPrice("4500");
+        addProductRequest.setDescription("very good");
+
+
         AddProductResponse addProductResponse=productService.addProduct(addProductRequest);
           assertThat(addProductResponse).isNotNull();
-          assertThat(addProductRequest.getProductId()).isEqualTo("78");
+
     }
     @Test
     public void updateProduct(){
-        UpdateProductRequest updateProductRequest=new UpdateProductRequest();
-        updateProductRequest.setPrice("4500");
-        updateProductRequest.setProductName("brandy");
-        updateProductRequest.setProductId("78");
 
-       assertThat(updateProductRequest.getPrice()).contains("4500");
+        UpdateProductRequest updateProductRequest=new UpdateProductRequest();
+        updateProductRequest.setProductName("honda");
+        updateProductRequest.setPrice("9000");
+        updateProductRequest.setId("66bb28580fb3b35964f3c6ab");
+
+        UpdateProductResponse updateProductResponse=productService.updateProduct(updateProductRequest);
+        assertThat(updateProductResponse).isNotNull();
+
+
 
     }
 

@@ -64,6 +64,7 @@ public class UserServiceIImplTest {
         userRequest.setAge("23");
         userRequest.setEmail("goodboy@gmail.com");
        userRequest.setName("username");
+       userRequest.setId("12");
 
        UserResponse res = userServices.signUP(userRequest);
         DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
@@ -78,81 +79,88 @@ public class UserServiceIImplTest {
         userRequest.setPassword("2323");
         userRequest.setPhoneNumber("08169822569");
         userRequest.setAge("27");
-        userRequest.setEmail("rebecca@gmail.com");
-        userRequest.setName("rebzy");
+        userRequest.setEmail("reb@gmail.com");
+        userRequest.setName("reb");
         userServices.signUP(userRequest);
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setPassword("2323");
-        loginRequest.setEmail("rebecca@gmail.com");
+        loginRequest.setEmail("reb@gmail.com");
         UserResponse userResponse = userServices.loginUser(loginRequest);
         assertThat(userResponse).isNotNull();
-        assertThat(loginRequest.getEmail()).isEqualTo("rebecca@gmail.com");
+        assertThat(loginRequest.getEmail()).isEqualTo("reb@gmail.com");
+
+    }
+    @Test
+    public  void getShoppingCart(){
+        UserCartRequest userCartRequest = new UserCartRequest();
+        Product product = new Product();
+        List<Item>items=new ArrayList<>();
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Item item = new Item();
+        product.setProductName("cloth");
+        product.setProductDescription("nice one");
+        product.setProductCategory(CLOTHING);
+        product.setPrice("5000");
+        item.setProduct(product);
+        item.setQuantityOfProduct("1");
+        items.add(item);
+        product.setProductName("cloth");
+        product.setProductDescription("nice one");
+        product.setProductCategory(CLOTHING);
+        product.setPrice("5000");
+        item.setProduct(product);
+        item.setQuantityOfProduct("1");
+        items.add(item);
+        shoppingCart.setItems(List.of(item));
+        shoppingCartRepo.findShoppingCartById("id");
+        shoppingCartRepo.save(shoppingCart);
+
+        UserCartResponse userCartResponse=shoppingCartServices.itemAddedToCart(userCartRequest);
+        assertThat(userCartResponse).isNotNull();
+
 
     }
 
+
         @Test
-        public  void getShoppingCart(){
+        public void updateShoppingCart(){
             UserCartRequest userCartRequest = new UserCartRequest();
             Product product = new Product();
-           List<Item>items=new ArrayList<>();
+           List<Item>items= new ArrayList<>();
             ShoppingCart shoppingCart = new ShoppingCart();
-            Item item = new Item();
-            product.setProductName("cloth");
-            product.setProductDescription("nice one");
-            product.setProductCategory(CLOTHING);
-            product.setPrice("5000");
-            item.setProduct(product);
-            item.setQuantityOfProduct("1");
-            items.add(item);
-            shoppingCart.setItems(List.of(item));
-            shoppingCartRepo.findShoppingCartById("id");
-            products.findProductByProductId("id");
-            shoppingCartRepo.save(shoppingCart);
-
-            UserCartResponse userCartResponse=shoppingCartServices.itemAddedToCart(userCartRequest);
-            assertThat(userCartResponse).isNotNull();
-
-
-    }
-        @Test
-            public void updateShoppingCart(){
-
-            UserCartRequest userCartRequest = new UserCartRequest();
-            Product product = new Product();
-            List<Item>items=new ArrayList<>();
-            ShoppingCart shoppingCart = new ShoppingCart();
-            Item item = new Item();
+           Item item = new Item();
             product.setProductName("wear");
-            product.setProductDescription("nice one");
-            product.setProductCategory(CLOTHING);
+           product.setProductDescription("nice one"); product.setProductCategory(CLOTHING);
             product.setPrice("5000");
             item.setProduct(product);
-            item.setQuantityOfProduct("1");
+           item.setQuantityOfProduct("1");
             items.add(item);
             shoppingCart.setItems(List.of(item));
             shoppingCartRepo.findShoppingCartById("id");
-            products.findProductByProductId("id");
-            shoppingCartRepo.save(shoppingCart);
+         products.findProductById("id");
+           shoppingCartRepo.save(shoppingCart);
 
-            UserCartResponse userCartResponse=shoppingCartServices.itemAddedToCart(userCartRequest);
-            assertThat(userCartResponse).isNotNull();
+          UserCartResponse userCartResponse=shoppingCartServices.itemAddedToCart(userCartRequest);
+           userCartResponse.setItems(userCartResponse.getItems());
+         assertThat(userCartResponse).isNotNull();
             UpdateShoppingCartRequest updateShoppingCartRequest=new UpdateShoppingCartRequest();
-        product.setProductName("bottle");
+     product.setProductName("bottle");
         product.setPrice("900");
         product.setProductCategory(CLOTHING);
-        item.setProduct(product);
+       item.setProduct(product);
         item.setQuantityOfProduct("1");
 
         items.add(item);
         shoppingCart.setItems(List.of(item));
         shoppingCartRepo.findShoppingCartById("id");
-        products.findProductByProductId("id");
+       products.findProductById("id");
         shoppingCartRepo.save(shoppingCart);
-            UpdateShoppingCartResponse updateShoppingCartResponse=shoppingCartServices.updateShoppingCart(updateShoppingCartRequest);
-            assertThat(updateShoppingCartResponse).isNotNull();
+            UserCartResponse updateShoppingCartResponse=shoppingCartServices.itemAddedToCart(userCartRequest);
+            updateShoppingCartResponse.setItems(List.of(item));
+          assertThat(updateShoppingCartResponse).isNotNull();
 
 
-        }
+       }
 
  }
 

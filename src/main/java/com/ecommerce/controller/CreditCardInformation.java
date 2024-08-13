@@ -4,6 +4,7 @@ import com.ecommerce.dto.Request.DetailUserRequest;
 import com.ecommerce.service.CreditCardInfoServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +17,10 @@ public class CreditCardInformation {
     @Autowired
     private CreditCardInfoServicesImpl creditCardInfoServices;
 
-    @PostMapping("/CreateCustomerCreditDetails")
+    @GetMapping("/CreateCustomerCreditDetails")
         public ResponseEntity<?>createCustomerCreditDetails(@RequestBody DetailUserRequest detailUserRequest) {
         try{
-            return new ResponseEntity<>(creditCardInfoServices.CreateCustomerCreditDetails(detailUserRequest),CREATED);
+            return new ResponseEntity<>(creditCardInfoServices.createCustomerCreditDetails(detailUserRequest),CREATED);
         }catch(Exception exception){
             return new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
         }

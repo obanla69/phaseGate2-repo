@@ -1,6 +1,7 @@
 package com.ecommerce.service;
 
 import com.ecommerce.data.model.Item;
+import com.ecommerce.data.model.Product;
 import com.ecommerce.data.repository.ItemRepo;
 import com.ecommerce.data.repository.Users;
 import com.ecommerce.dto.Request.ItemRequest;
@@ -17,14 +18,25 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public ItemResponse addItem(ItemRequest itemRequest) {
         Item item = new Item();
-        itemRequest.setProduct(itemRequest.getProduct());
-        itemRequest.setId(itemRequest.getId());
-        itemRequest.setQuantityProduct(itemRequest.getQuantityProduct());
+        Product product=new Product();
+         item.setProduct(itemRequest.getProduct());
+        item.setId(itemRequest.getId());
+        item.setQuantityOfProduct(itemRequest.getQuantityProduct());
+        item.setProductName(itemRequest.getProductName());
+        item.setPrice(itemRequest.getPrice());
+        item.setProductDescription(itemRequest.getProductDescription());
         itemRepo.save(item);
 
         ItemResponse itemResponse = new ItemResponse();
-        itemResponse.setId("56");
-
+        product.setPrice(item.getPrice());
+        product.setProductDescription(item.getQuantityOfProduct());
+        itemResponse.setId(item.getId());
+        itemResponse.setQuantityOfProduct(item.getQuantityOfProduct());
+        itemResponse.setPrice(item.getPrice());
+        itemResponse.setProduct(item.getProduct());
+        itemResponse.setProductName(item.getProductName());
+        itemResponse.setProductDescription(item.getProductDescription());
+        itemResponse.setPrice(item.getPrice());
         return itemResponse;
 
 

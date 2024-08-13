@@ -11,8 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerResponse {
-    private String id;
     private String receiverPhoneNumber;
     private String name;
-    private CreditCardInformation creditCardInformation;
+    private String Address;
+    private String Email;
+
 }

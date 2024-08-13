@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 public class CreditCardInformation {
     private String id;
     private String cardCvv;
-    private LocalDateTime cardExpirationYearAndMonth;
     private String creditCardNumber;
     private CardType cardType;
     private String cardName;

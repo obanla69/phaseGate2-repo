@@ -12,8 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AddProductRequest {
     private String productId;
-    private String Price;
+    private String price;
     private String productName;
     private ProductCategory productCategory;
-    private  String productDescription;
+    private  String description;
 }

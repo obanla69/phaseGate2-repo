@@ -10,30 +10,33 @@ import com.ecommerce.dto.Request.DetailUserRequest;
 import com.ecommerce.dto.Request.UserAddressRequest;
 import com.ecommerce.dto.Response.DetailUserResponse;
 import com.ecommerce.dto.Response.UserAddressResponse;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.ecommerce.data.Enums.CardType.MASTERCARD;
 
 @Service
+@RequiredArgsConstructor
 public  class CreditCardInfoServicesImpl implements CreditCardInfoServices {
 
-@Autowired
-    private Users users;
-@Autowired
- private CreditCardInfoRepository creditCardInfoRepository;
+    private final Users users;
+    private final CreditCardInfoRepository creditCardInfoRepository;
 
     @Override
-    public DetailUserResponse CreateCustomerCreditDetails(DetailUserRequest detailUserRequest) {
+    public DetailUserResponse createCustomerCreditDetails(DetailUserRequest detailUserRequest) {
         CreditCardInformation creditCardInformation = new CreditCardInformation();
-        detailUserRequest.setNameOnCard(detailUserRequest.getNameOnCard());
-        detailUserRequest.setCardCvv(detailUserRequest.getCardCvv());
-        detailUserRequest.setCardExpirationYearAndMonth(detailUserRequest.getCardExpirationYearAndMonth());
-        detailUserRequest.setCardName(detailUserRequest.getCardName());
-        creditCardInfoRepository.save(creditCardInformation);
+        creditCardInformation.setCardName(detailUserRequest.getCardName());
+        creditCardInformation.setCardCvv(detailUserRequest.getCardCvv());
+        creditCardInformation.setCreditCardNumber(detailUserRequest.getCreditCardNumber());
+        creditCardInformation.setCardType(detailUserRequest.getCardType());
+        CreditCardInformation savedCreditCard= creditCardInfoRepository.save(creditCardInformation);
         DetailUserResponse detailUserResponse=new DetailUserResponse();
-        detailUserResponse.setCardType(MASTERCARD);
-        detailUserResponse.setId(creditCardInformation.getId());
+        detailUserResponse.setCardType(savedCreditCard.getCardType());
+        detailUserResponse.setCardCvv(savedCreditCard.getCardCvv());
+        detailUserResponse.setCreditCardNumber(savedCreditCard.getCreditCardNumber());
+        detailUserResponse.setCardName(savedCreditCard.getCardName());
         return detailUserResponse;
     }
 

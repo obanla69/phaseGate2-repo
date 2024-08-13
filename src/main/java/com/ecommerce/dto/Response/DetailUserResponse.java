@@ -13,9 +13,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DetailUserResponse {
-    private String id;
+
     private String cardCvv;
-    private LocalDateTime cardExpirationYearAndMonth;
     private String creditCardNumber;
     private CardType cardType;
     private String cardName;

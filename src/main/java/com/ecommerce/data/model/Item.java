@@ -15,5 +15,8 @@ public class Item {
     private String id;
     private String quantityOfProduct;
     private Product product;
+    private String price;
+    private String productName;
+    private String productDescription;
 
 }

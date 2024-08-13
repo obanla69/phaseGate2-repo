@@ -14,8 +14,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 public class BillingInformation {
+    @Id
     private String id;
     private String receiverPhoneNumber;
     private String name;
-    private CreditCardInformation creditCardInformation;
+    private String Address;
+    private String Email;
 }

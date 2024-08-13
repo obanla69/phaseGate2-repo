@@ -6,6 +6,7 @@ import com.ecommerce.service.ProductServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class ProductServiceController {
     @Autowired
     private ProductServicesImpl productServices;
 
-    @PostMapping("/addProduct")
+    @PutMapping("/addProduct")
     public ResponseEntity<?>addProduct(@RequestBody AddProductRequest addProductRequest){
         try{
             return new ResponseEntity<>(productServices.addProduct(addProductRequest),CREATED);
@@ -25,7 +26,7 @@ public class ProductServiceController {
             return new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
         }
     }
-    @PostMapping("/updateProduct")
+    @PutMapping("/updateProduct")
     public ResponseEntity<?>updateProduct(@RequestBody UpdateProductRequest updateProductRequest){
         try{
             return new ResponseEntity<>(productServices.updateProduct(updateProductRequest),CREATED);

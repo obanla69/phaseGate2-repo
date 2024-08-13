@@ -1,6 +1,7 @@
 package com.ecommerce.service;
 
 import com.ecommerce.data.model.BillingInformation;
+import com.ecommerce.data.model.CreditCardInformation;
 import com.ecommerce.data.model.User;
 import com.ecommerce.data.repository.BillingInformationRepo;
 import com.ecommerce.data.repository.Users;
@@ -19,15 +20,21 @@ public class BillingInformationServiceImpl implements BillingInformationServices
 
     @Override
     public CustomerResponse customerBillsIformation(CustomerRequest customerRequest) {
+        System.out.println(customerRequest.getAddress());
         BillingInformation billingInformation=new BillingInformation();
-        customerRequest.setName(customerRequest.getName());
-        customerRequest.setId(customerRequest.getId());
-        customerRequest.setCreditCardInformation(customerRequest.getCreditCardInformation());
-        customerRequest.setReceiverPhone(customerRequest.getReceiverPhone());
-        customerRequest.setReceiverPhone(customerRequest.getReceiverPhone());
-        billingInformationRepo.save(billingInformation);
+        billingInformation.setName(customerRequest.getName());
+        billingInformation.setReceiverPhoneNumber(customerRequest.getReceiverPhone());
+        billingInformation.setAddress(customerRequest.getAddress());
+        billingInformation.setEmail(customerRequest.getEmail());
+        System.out.println(billingInformation.getAddress());
+        billingInformation = billingInformationRepo.save(billingInformation);
+        System.out.println(billingInformation.getAddress());
 
         CustomerResponse customerResponse = new CustomerResponse();
+        customerResponse.setName(billingInformation.getName());
+        customerResponse.setReceiverPhoneNumber(billingInformation.getReceiverPhoneNumber());
+        customerResponse.setAddress(billingInformation.getAddress());
+        customerResponse.setEmail(billingInformation.getEmail());
 
         return customerResponse;
 

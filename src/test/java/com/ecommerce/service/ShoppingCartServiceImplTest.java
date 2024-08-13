@@ -9,8 +9,10 @@ import com.ecommerce.data.repository.Products;
 import com.ecommerce.data.repository.ShoppingCartRepo;
 import com.ecommerce.data.repository.Users;
 import com.ecommerce.dto.Request.AddProductRequest;
+import com.ecommerce.dto.Request.GetShoppingCartRequest;
 import com.ecommerce.dto.Request.ItemRequest;
 import com.ecommerce.dto.Request.UserCartRequest;
+import com.ecommerce.dto.Response.GetShoppingCartResponse;
 import com.ecommerce.dto.Response.UserCartResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class ShoppingCartServiceImplTest {
         ItemRequest itemRequest = new ItemRequest();
         ShoppingCart shoppingCart = new ShoppingCart();
         Item item= new Item();
-       addProductRequest.setProductDescription("nice product");
+       addProductRequest.setDescription("nice product");
        addProductRequest.setProductCategory(CLOTHING);
        addProductRequest.setProductName("cloth");
         addProductRequest.setPrice("6000");
@@ -52,9 +54,7 @@ public class ShoppingCartServiceImplTest {
        UserCartResponse userCartResponse =shoppingCartServices.itemAddedToCart(userCartRequest);
      assertThat(userCartResponse).isNotNull();
 
-
     }
-
 
 
 }

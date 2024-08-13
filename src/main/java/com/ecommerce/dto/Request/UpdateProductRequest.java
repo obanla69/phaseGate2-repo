@@ -12,6 +12,6 @@ import lombok.Setter;
 public class UpdateProductRequest {
     private String price;
     private String productName;
-    private String productId;
+    private String id;
 
 }

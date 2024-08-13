@@ -1,21 +1,20 @@
-package com.ecommerce.data.model;
+package com.ecommerce.dto.Response;
 
 import com.ecommerce.data.Enums.ProductCategory;
+import com.ecommerce.data.model.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Setter
+import java.util.List;
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-@Document
-public class Product {
-    private String id;
-    private String productName;
+@AllArgsConstructor
+public class GetShoppingCartResponse {
+    private String message;
+    private String productNameId;
     private String price;
     private String productDescription;
     private ProductCategory productCategory;

@@ -11,5 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UpdateProductResponse {
     private  String message;
-    private String productId;
+    private String id;
+    private String productName;
+    private String price;
 }
