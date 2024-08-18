@@ -15,5 +15,5 @@ public class AddProductRequest {
     private String price;
     private String productName;
     private ProductCategory productCategory;
-    private  String description;
+    private  String productDescription;
 }

@@ -40,7 +40,7 @@ public class ProductServicesImpl implements ProductService{
     public AddProductResponse addProduct(AddProductRequest addProductRequest) {
 
         System.out.println(addProductRequest.getPrice());
-        System.out.println(addProductRequest.getDescription());
+        System.out.println(addProductRequest.getProductDescription());
 
         User user = new User();
         Product product =new Product();
@@ -48,7 +48,7 @@ public class ProductServicesImpl implements ProductService{
         product.setPrice(addProductRequest.getPrice());
         product.setProductName(addProductRequest.getProductName());
         product.setProductCategory(addProductRequest.getProductCategory());
-        product.setProductDescription(addProductRequest.getDescription());
+        product.setProductDescription(addProductRequest.getProductDescription());
         product = products.save(product);
         System.out.println(product.getId());
         System.out.println(product.getPrice());
@@ -95,7 +95,7 @@ public class ProductServicesImpl implements ProductService{
         Optional<User> user = userServices.findUserById(id);
         try {
             if (user.isPresent()){
-                if (user.get().getRolePosition() == RolePosition.CUSTOMER) {
+                if (user.get().getRolePosition() == RolePosition.SELLER) {
                     itemRepo.save(new Item());
                 }
             }

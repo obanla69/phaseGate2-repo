@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 public class ShoppingCartController {
@@ -28,5 +27,13 @@ public class ShoppingCartController {
 
 
 
+    @GetMapping("view-cart/{id}")
+    public ResponseEntity <?> viewCart( @PathVariable("id") String id){
+        try{
+            return new ResponseEntity<>(shoppingCartServices.viewShoppingCart(id),OK);
+        }catch(Exception exception){
+            return new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
+        }
+    }
 
 }

@@ -18,4 +18,5 @@ public class GetShoppingCartResponse {
     private String price;
     private String productDescription;
     private ProductCategory productCategory;
+    private String id;
 }

@@ -38,23 +38,23 @@ public class UserServiceIImplTest {
     @Autowired
     private ItemRepo itemRepo;
 
-    @BeforeEach
-    void setUp(){
-        userServices.deleteAllUsers();
-    }
+//    @BeforeEach
+//    void setUp(){
+//        userServices.deleteAllUsers();
+//    }
 
     @Test
     public void signUp(){
         UserRequest userRequest= new UserRequest();
-        userRequest.setEmail("rebecca@gmail.com");
+        userRequest.setEmail("Tunde@gmail.com");
         userRequest.setPassword("2323");
-        userRequest.setName("rebzy");
+        userRequest.setName("omoiya saki");
         userRequest.setPhoneNumber("080677623456");
         userRequest.setAge("27");
 
         UserResponse userResponse = userServices.signUP(userRequest);
         assertThat(userResponse).isNotNull();
-        assertThat(userRequest.getEmail()).isEqualTo("rebecca@gmail.com");
+        assertThat(userRequest.getEmail()).isEqualTo("Tunde@gmail.com");
     }
     @Test
     public void deleteUser(){
@@ -90,6 +90,15 @@ public class UserServiceIImplTest {
         assertThat(loginRequest.getEmail()).isEqualTo("reb@gmail.com");
 
     }
+
+//    @Test void logout(){
+//        UserLogoutRequest userLogoutRequest=new UserLogoutRequest();
+//        userLogoutRequest.setEmail("reb@gmail.com");
+//        userServices.logout(userLogoutRequest);
+//        UserLogoutResponse userLogoutResponse=userServices.logout(userLogoutRequest);
+//        assertThat(userLogoutResponse).isNotNull();
+//        assertThat(userLogoutRequest.getEmail()).isEqualTo("reb@gmail.com");
+//    }
     @Test
     public  void getShoppingCart(){
         UserCartRequest userCartRequest = new UserCartRequest();

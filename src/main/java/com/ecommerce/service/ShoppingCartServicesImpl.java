@@ -6,6 +6,7 @@ import com.ecommerce.data.model.ShoppingCart;
 import com.ecommerce.data.repository.Products;
 import com.ecommerce.data.repository.ShoppingCartRepo;
 import com.ecommerce.dto.Request.*;
+import com.ecommerce.dto.Response.AddProductResponse;
 import com.ecommerce.dto.Response.GetShoppingCartResponse;
 import com.ecommerce.dto.Response.UpdateShoppingCartResponse;
 import com.ecommerce.dto.Response.UserCartResponse;
@@ -29,24 +30,37 @@ public class ShoppingCartServicesImpl implements ShoppingCartServices {
     @Override
     public UserCartResponse itemAddedToCart(UserCartRequest useCartRequest) {
         AddProductRequest addProductRequest = new AddProductRequest();
+        Product product=new Product();
         ItemRequest itemRequest = new ItemRequest();
         ShoppingCart shoppingCart = new ShoppingCart();
         addProductRequest.setProductCategory(addProductRequest.getProductCategory());
-        addProductRequest.setDescription(addProductRequest.getDescription());
+        addProductRequest.setProductDescription(addProductRequest.getProductDescription());
         addProductRequest.setProductName(addProductRequest.getProductName());
         addProductRequest.setPrice(addProductRequest.getPrice());
         addProductRequest.setProductId(addProductRequest.getProductId());
         itemRequest.setProduct(itemRequest.getProduct());
         itemRequest.setQuantityProduct(itemRequest.getQuantityProduct());
         shoppingCart.setItems(useCartRequest.getItems());
-        shoppingCartRepo.save(shoppingCart);
-
+        shoppingCart=shoppingCartRepo.save(shoppingCart);
         UserCartResponse userCartResponse = new UserCartResponse();
         userCartResponse.setItems(useCartRequest.getItems());
+        AddProductResponse addProductResponse=new AddProductResponse();
+        addProductResponse.setProductDescription(product.getProductDescription());
+        addProductResponse.setPrice(product.getPrice());
+        addProductResponse.setProductCategory(product.getProductCategory());
+        userCartResponse.setId(shoppingCart.getId());
         return userCartResponse;
 
     }
+
+    @Override
+    public ShoppingCart viewShoppingCart(String id) {
+       return shoppingCartRepo.findShoppingCartById(id);
+    }
 }
+
+
+
 //    @Override
 //    public GetShoppingCartResponse getShoppingCartToCart(GetShoppingCartRequest getShoppingCartRequest) {
 //        ShoppingCart shoppingCart= shoppingCartRepo.findShoppingCartById("id");
@@ -84,6 +98,8 @@ public class ShoppingCartServicesImpl implements ShoppingCartServices {
 //        updateShoppingCartResponse.setPrice(updateShoppingCartResponse.getPrice());
 //        return updateShoppingCartResponse;
 //    }
+
+
 
 
 

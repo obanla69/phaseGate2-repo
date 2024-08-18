@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetShoppingCartRequest {
+    private String id;
     private String message;
     private String productNameId;
     private String price;

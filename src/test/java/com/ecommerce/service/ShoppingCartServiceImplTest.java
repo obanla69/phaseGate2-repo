@@ -43,7 +43,7 @@ public class ShoppingCartServiceImplTest {
         ItemRequest itemRequest = new ItemRequest();
         ShoppingCart shoppingCart = new ShoppingCart();
         Item item= new Item();
-       addProductRequest.setDescription("nice product");
+       addProductRequest.setProductDescription("nice product");
        addProductRequest.setProductCategory(CLOTHING);
        addProductRequest.setProductName("cloth");
         addProductRequest.setPrice("6000");

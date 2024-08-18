@@ -54,7 +54,7 @@ public class UserController {
             return new ResponseEntity<>(exception.getMessage(),BAD_REQUEST);
         }
     }
-    @PutMapping("/updatedToCart")
+    @PostMapping("/updatedToCart")
     public  ResponseEntity<?>updatedToCart(@RequestBody UpdateShoppingCartRequest updateShoppingCartRequest){
         try{
             return new ResponseEntity<>(userServices.updateShoppingCart(updateShoppingCartRequest),CREATED);

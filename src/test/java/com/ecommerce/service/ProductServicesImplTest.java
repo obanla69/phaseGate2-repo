@@ -26,7 +26,7 @@ public class ProductServicesImplTest {
         addProductRequest.setProductCategory(ELECTRONICS);
         addProductRequest.setProductName("yam");
         addProductRequest.setPrice("4500");
-        addProductRequest.setDescription("very good");
+        addProductRequest.setProductDescription("very good");
 
 
         AddProductResponse addProductResponse=productService.addProduct(addProductRequest);

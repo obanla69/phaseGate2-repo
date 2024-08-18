@@ -1,15 +1,13 @@
 package com.ecommerce.service;
 
+import com.ecommerce.data.Enums.ProductCategory;
 import com.ecommerce.data.model.Item;
 import com.ecommerce.data.model.Product;
 import com.ecommerce.data.model.ShoppingCart;
 import com.ecommerce.data.model.User;
 import com.ecommerce.data.repository.*;
 import com.ecommerce.dto.Request.*;
-import com.ecommerce.dto.Response.DeleteUserResponse;
-import com.ecommerce.dto.Response.GetShoppingCartResponse;
-import com.ecommerce.dto.Response.UpdateShoppingCartResponse;
-import com.ecommerce.dto.Response.UserResponse;
+import com.ecommerce.dto.Response.*;
 import com.ecommerce.exception.UserAlreadyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +73,27 @@ public class UserServicesImpl implements UserServices {
     }
 
     @Override
+    public UserLogoutResponse logout(UserLogoutRequest userLogoutResponse) {
+        return null;
+    }
+
+//    @Override
+//    public UserLogoutResponse logout(UserLogoutRequest userLogoutResponse) {
+//
+//            User user =users.findUserByEmail(UserLogoutRequest.getEmail);
+//            users.setLogout(true);
+//            users.save(user);
+//            UserLogoutResponse logoutResponse = new UserLogoutResponse();
+//            logoutResponse.setMessage("Successfully logged out");
+//            return logoutResponse;
+//
+//    }
+
+    private User findByEmail(String email) {
+        return users.findUserByEmail("email");
+    }
+
+    @Override
     public User findUserByEmail(String email) {
         return users.findUserByEmailIgnoreCase(email);
     }
@@ -113,7 +132,10 @@ public class UserServicesImpl implements UserServices {
         shoppingCartRepo.save(shoppingCart);
         GetShoppingCartResponse getShoppingCartResponse = new GetShoppingCartResponse();
         getShoppingCartResponse.setPrice(item.getPrice());
-        getShoppingCartResponse.setProductCategory(item.getProduct().getProductCategory());
+        getShoppingCartResponse.setId(item.getId());
+        getShoppingCartResponse.setProductCategory(ProductCategory.valueOf(item.getProductCategory()));
+        getShoppingCartResponse.setProductNameId(item.getId());
+        getShoppingCartRequest.setProductDescription(item.getProductDescription());
         getShoppingCartResponse.setProductDescription(item.getProductDescription());
         return getShoppingCartResponse;
 
